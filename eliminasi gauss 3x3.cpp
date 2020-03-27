@@ -1,25 +1,25 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
  	float x,y,z,m,n,o;
     float a[3][3], b[3];
-    float (*pa)[3] = a, *pb = b, *cari;
-    int *angka;
-
-void find(float *cari);
+    float (*pa)[3] = a, *pb = b;
+    int *angka,pilihan;
+	char s;
+	
+void find(float *cari);   
 void input(int *angka)
 {
-    cout << "\tmohon menginput data menggunakan angka!" << endl << endl;
 	cout << "Masukan Angka" << endl;
     for(int i=0;i<3;i++)
     {
         for(int j=0;j<3;j++)
-        {
+        {	
             cout << "["<<i+1<<"]" << "["<<j+1<<"]" << " = ";
-            cin >> *(*(pa +i)+j);
-
+            cin >> *(*(pa +i)+j); 
+            
         }
-    }
+    }	
     cout << endl << "Matriks" << endl;
     for(int i=0;i<3;i++)
     {
@@ -37,14 +37,9 @@ void input(int *angka)
         cout << "x" << i+1 << " = ";
         cin >> *(pb +i);
     }
-    find (*pa);
-}
-int main()
-{
-    cout << "\tMencari Nilai dari Persamaan Linear 3 Variabel Menggunakan Metode Gauss" << endl;
-    cout << "\t-----------------------------------------------------------------------" << endl;
-	input(angka);
-	cout << endl << "Persamaan Linear" << endl;
+
+    persamaan:
+    cout << endl << "Persamaan Linear" << endl;
     for(int i=0;i<3;i++)
     {
         for(int j=0;j<3;j++)
@@ -89,7 +84,7 @@ int main()
         for(int j=0;j<3;j++)
         {
             cout << *(*(pa +i)+j) << "\t";
-            if (j==2)
+            if (j%2 == 0 && j!=0)
                 cout << "= " << *(pb +i) <<endl;
         }
     }
@@ -102,12 +97,37 @@ int main()
     cout << "x = " << o << endl;
     cout << "y = " << n << endl;
     cout << "z = " << m << endl;
-
+    find(*pa);
+}
+int main()
+{
+	input(angka);
+    
     return 0;
 }
 void find(float *cari)
 {
-	cari++;
+	
+	if(*cari == s)
+	{	
 	system("cls");
-	cout<<"\treminder: jangan lupa inputan hanya bisa berupa angka!"<<endl;
+	cout<<"Input Anda salah, Masukan Angka"<<endl;
+}
+	cout<<"Ingin Ulagi ? \n 1.Ya \n 2.Tidak"<<endl;
+	cin>>pilihan;
+	switch(pilihan)
+	{
+		case 1:
+		system("cls");
+		return input(angka);
+		break;
+		case 2:
+		goto exit;
+		break;
+	}
+	cari++;
+
+    exit:
+    	system("cls");
+    	cout<<"okay";
 }
